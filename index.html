@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dundigalla Rithwik Mohan | AI/ML & Full-Stack Developer</title>
+  <meta name="description" content="Portfolio of Dundigalla Rithwik Mohan, B.Tech IT student at CBIT, specializing in Full-Stack development, Generative AI, and AI-powered automation.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Project Stylesheet -->
+  <link rel="stylesheet" href="/src/style.css">
+
+  <link rel="icon" type="image/svg+xml" href="/src/assets/javascript.svg">
+</head>
+<body>
+  <!-- Custom Cursor Glow Background -->
+  <div id="ambient-glow" class="ambient-glow"></div>
+
+  <!-- Header & Navigation -->
+  <header class="navbar-container">
+    <div class="logo">
+      <span class="logo-accent">&lt;</span>Rithwik<span class="logo-accent">.Mohan /&gt;</span>
+    </div>
+    <nav class="nav-links">
+      <a href="#about" class="nav-link">About</a>
+      <a href="#skills" class="nav-link">Skills</a>
+      <a href="#projects" class="nav-link">Projects</a>
+      <a href="#timeline" class="nav-link">Timeline</a>
+      <a href="#ai-twin" class="nav-link nav-btn-outline">AI Twin Chat</a>
+      <a href="#readme-gen" class="nav-link nav-btn">README Gen</a>
+    </nav>
+    <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section">
+      <div class="hero-content">
+        <div class="badge">Welcome to my Digital Space</div>
+        <h1 class="hero-title">
+          Hi, I am <span class="highlight-text">Rithwik Mohan</span>
+        </h1>
+        <div class="typing-container">
+          <span class="static-txt">Specialized in</span>
+          <span id="typing-text" class="typing-txt"></span>
+        </div>
+        <p class="hero-subtitle">
+          I bridge the gap between robust Full-Stack applications and cognitive Artificial Intelligence. Currently pursuing B.Tech in IT at CBIT with a CGPA of 9.18.
+        </p>
+        <div class="hero-actions">
+          <a href="#projects" class="btn btn-primary" id="btn-view-work">View Projects</a>
+          <a href="#contact" class="btn btn-secondary" id="btn-get-touch">Contact Me</a>
+          <a href="/resume_jun.pdf" class="btn btn-outline" id="btn-download-resume" download>Download Resume</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="profile-card-wrapper">
+          <div class="profile-card-inner">
+            <div class="profile-card-front">
+              <img src="/src/assets/profile.png" alt="Dundigalla Rithwik Mohan" class="profile-img">
+              <div class="profile-card-glow"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section scroll-reveal">
+      <div class="section-header">
+        <span class="section-subtitle">Who I Am</span>
+        <h2 class="section-title">About Me</h2>
+        <div class="section-divider"></div>
+      </div>
+      <div class="about-grid">
+        <div class="about-info card-glass">
+          <p>
+            I am a passionate <strong>Information Technology undergraduate</strong> at <strong>Chaitanya Bharathi Institute of Technology (CBIT), Hyderabad</strong>. With a strong CGPA of <strong>9.18</strong>, my academic journey is fueled by a relentless curiosity for software engineering and cognitive computing.
+          </p>
+          <p>
+            My core strength lies in <strong>AI/ML integration and Generative AI</strong>, building smart agents that interface with real-world databases and APIs. Whether it's training convolutional neural networks for civic reporting or automating workflows using MCP and LLMs, I love creating systems that make a tangible difference.
+          </p>
+          <div class="education-summary">
+            <h3>Quick Stats</h3>
+            <div class="stats-grid">
+              <div class="stat-card">
+                <span class="stat-number">9.18</span>
+                <span class="stat-label">B.Tech CGPA</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-number">350+</span>
+                <span class="stat-label">LeetCode Solved</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-number">5+</span>
+                <span class="stat-label">Completed Projects</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="about-education-timeline card-glass">
+          <h3 class="timeline-heading">Education History</h3>
+          <div class="edu-timeline">
+            <div class="edu-item">
+              <div class="edu-dot"></div>
+              <div class="edu-content">
+                <span class="edu-date">Dec 2023 - Present</span>
+                <h4>Bachelor of Technology (IT)</h4>
+                <p class="edu-institution">Chaitanya Bharathi Institute of Technology, Hyderabad</p>
+                <span class="edu-score">CGPA: 9.18</span>
+              </div>
+            </div>
+            <div class="edu-item">
+              <div class="edu-dot"></div>
+              <div class="edu-content">
+                <span class="edu-date">Jun 2021 - Apr 2023</span>
+                <h4>Class XII (MPC)</h4>
+                <p class="edu-institution">Narayana Junior College, Hyderabad</p>
+                <span class="edu-score">Score: 96.6%</span>
+              </div>
+            </div>
+            <div class="edu-item">
+              <div class="edu-dot"></div>
+              <div class="edu-content">
+                <span class="edu-date">Jun 2020 - Apr 2021</span>
+                <h4>Class X</h4>
+                <p class="edu-institution">Narayana CO School, Hyderabad</p>
+                <span class="edu-score">GPA: 10/10</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills-section scroll-reveal">
+      <div class="section-header">
+        <span class="section-subtitle">My Capabilities</span>
+        <h2 class="section-title">Technical Skills</h2>
+        <div class="section-divider"></div>
+      </div>
+      <div class="skills-categories">
+        <button class="skills-tab active" data-category="all" id="tab-all">All Skills</button>
+        <button class="skills-tab" data-category="languages" id="tab-langs">Languages</button>
+        <button class="skills-tab" data-category="web" id="tab-web">Web Dev</button>
+        <button class="skills-tab" data-category="aiml" id="tab-aiml">AI / ML</button>
+        <button class="skills-tab" data-category="tools" id="tab-tools">Tools & Platforms</button>
+      </div>
+      <div class="skills-grid" id="skills-grid">
+        <!-- Rendered dynamically via JavaScript for richer interactivity -->
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects-section scroll-reveal">
+      <div class="section-header">
+        <span class="section-subtitle">My Creations</span>
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="section-divider"></div>
+      </div>
+      <div class="skills-categories">
+        <button class="projects-tab active" data-category="all" id="proj-tab-all">All Projects</button>
+        <button class="projects-tab" data-category="aiml" id="proj-tab-aiml">AI / ML</button>
+        <button class="projects-tab" data-category="fullstack" id="proj-tab-fullstack">Full-Stack</button>
+        <button class="projects-tab" data-category="iot" id="proj-tab-iot">Data & IoT</button>
+      </div>
+      <div class="projects-grid" id="projects-grid">
+        <!-- Rendered dynamically via JavaScript for modal trigger and custom animations -->
+      </div>
+    </section>
+
+    <!-- Experience, Certifications & Achievements Section -->
+    <section id="timeline" class="timeline-section scroll-reveal">
+      <div class="section-header">
+        <span class="section-subtitle">Milestones</span>
+        <h2 class="section-title">Certifications & Achievements</h2>
+        <div class="section-divider"></div>
+      </div>
+      <div class="timeline-grid">
+        <div class="certifications-list card-glass">
+          <h3>Certifications</h3>
+          <ul class="certifications-ul">
+            <li onclick="window.openLightbox('/certificates/azure_ai.png', 'Microsoft Azure AI Fundamentals (AI-900)')" style="cursor: pointer;" class="hover-glow">
+              <div class="cert-icon">☁️</div>
+              <div class="cert-info">
+                <h4>Microsoft Azure AI Fundamentals (AI-900)</h4>
+                <span class="cert-issuer">Microsoft</span>
+              </div>
+            </li>
+            <li onclick="window.openLightbox('/certificates/oracle.png', 'Oracle Cloud Infrastructure 2025 Certified Foundations Associate')" style="cursor: pointer;" class="hover-glow">
+              <div class="cert-icon">🛡️</div>
+              <div class="cert-info">
+                <h4>Oracle Cloud Infrastructure 2025 Certified Foundations Associate</h4>
+                <span class="cert-issuer">Oracle</span>
+              </div>
+            </li>
+            <li onclick="window.openLightbox('/certificates/salesforce agentblazzer workshop.png', 'Salesforce AgentBlazer Workshop')" style="cursor: pointer;" class="hover-glow">
+              <div class="cert-icon">⚡</div>
+              <div class="cert-info">
+                <h4>Salesforce AgentBlazer Workshop</h4>
+                <span class="cert-issuer">Salesforce</span>
+              </div>
+            </li>
+            <li onclick="window.openLightbox('/certificates/Nptel.png', 'Joy of Computing Using Python')" style="cursor: pointer;" class="hover-glow">
+              <div class="cert-icon">🐍</div>
+              <div class="cert-info">
+                <h4>Joy of Computing Using Python</h4>
+                <span class="cert-issuer">NPTEL</span>
+              </div>
+            </li>
+            <li onclick="window.openLightbox('/certificates/adobe_hackathon.png', 'Adobe Hackathon')" style="cursor: pointer;" class="hover-glow">
+              <div class="cert-icon">🎨</div>
+              <div class="cert-info">
+                <h4>Adobe Hackathon</h4>
+                <span class="cert-issuer">Adobe</span>
+              </div>
+            </li>
+            <li onclick="window.openLightbox('/certificates/make.com.png', 'Make.com Automation Certificate')" style="cursor: pointer;" class="hover-glow">
+              <div class="cert-icon">⚙️</div>
+              <div class="cert-info">
+                <h4>Make.com Automation Certificate</h4>
+                <span class="cert-issuer">Make.com</span>
+              </div>
+            </li>
+            <li onclick="window.openLightbox('/certificates/voc_certificate.png', 'VOC Certificate')" style="cursor: pointer;" class="hover-glow">
+              <div class="cert-icon">📜</div>
+              <div class="cert-info">
+                <h4>VOC Certificate</h4>
+                <span class="cert-issuer">Issuer</span>
+              </div>
+            </li>
+            <li onclick="window.openLightbox('/certificates/DOC-20250328-WA0002..png', 'Sudhee hackathon')" style="cursor: pointer;" class="hover-glow">
+              <div class="cert-icon">🎖️</div>
+              <div class="cert-info">
+                <h4>Sudhee hackathon</h4>
+                <span class="cert-issuer">Hackathon</span>
+              </div>
+            </li>
+            <li onclick="window.openLightbox('/certificates/c3.png', 'static website certificate')" style="cursor: pointer;" class="hover-glow">
+              <div class="cert-icon">📄</div>
+              <div class="cert-info">
+                <h4>static website certificate</h4>
+                <span class="cert-issuer">Issuer</span>
+              </div>
+            </li>
+            <li onclick="window.openLightbox('/certificates/c1.png', 'responsive website certificate')" style="cursor: pointer;" class="hover-glow">
+              <div class="cert-icon">📄</div>
+              <div class="cert-info">
+                <h4>responsive website certificate</h4>
+                <span class="cert-issuer">Issuer</span>
+              </div>
+            </li>
+            <li onclick="window.openLightbox('/certificates/c2.png', 'Databases certificate')" style="cursor: pointer;" class="hover-glow">
+              <div class="cert-icon">📄</div>
+              <div class="cert-info">
+                <h4>Databases certificate</h4>
+                <span class="cert-issuer">Issuer</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="achievements-list card-glass">
+          <h3>Achievements</h3>
+          <div class="achievement-timeline">
+            <div class="achieve-item">
+              <div class="achieve-badge">🏆</div>
+              <div class="achieve-content">
+                <h4>Smart India Hackathon (SIH) 2025</h4>
+                <p>National Level Finalist representing CBIT among thousands of competing teams solving real-world government problems.</p>
+              </div>
+            </div>
+            <div class="achieve-item">
+              <div class="achieve-badge">🚀</div>
+              <div class="achieve-content">
+                <h4>Sudhee 2026 Hackathon</h4>
+                <p>Secured an institutional placement in the hackathon, delivering a working AI prototype under tight cross-functional sprint deadlines.</p>
+              </div>
+            </div>
+            <div class="achieve-item">
+              <div class="achieve-badge">💻</div>
+              <div class="achieve-content">
+                <h4>LeetCode Milestone</h4>
+                <p>Solved 350+ data structures and algorithm challenges, demonstrating strong logical reasoning and problem-solving skills.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI Twin Chat Simulator Section -->
+    <section id="ai-twin" class="ai-twin-section scroll-reveal">
+      <div class="section-header">
+        <span class="section-subtitle">Talk with My AI</span>
+        <h2 class="section-title">Chat with Rithwik's Twin</h2>
+        <div class="section-divider"></div>
+      </div>
+      <div class="chat-container card-glass">
+        <div class="chat-header">
+          <div class="avatar-status">
+            <div class="chat-avatar">
+              <img src="/src/assets/profile.png" alt="Rithwik AI Avatar">
+            </div>
+            <div class="status-info">
+              <h4>Rithwik's Digital Twin</h4>
+              <span class="status-dot-online">Active Online</span>
+            </div>
+          </div>
+        </div>
+        <div class="chat-body" id="chat-body">
+          <div class="message system-message">
+            <p>Welcome! Ask me anything about Rithwik's projects, skills, certifications, or hireability. Select a prompt below to begin!</p>
+          </div>
+        </div>
+        <div class="chat-quick-replies" id="quick-replies">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- GitHub README Generator Section -->
+    <section id="readme-gen" class="readme-gen-section scroll-reveal">
+      <div class="section-header">
+        <span class="section-subtitle">Interactive Utility</span>
+        <h2 class="section-title">GitHub README Generator</h2>
+        <div class="section-divider"></div>
+      </div>
+      <div class="readme-grid">
+        <div class="readme-inputs card-glass">
+          <h3>Customize Your README</h3>
+          <div class="form-group">
+            <label for="readme-name">Display Name</label>
+            <input type="text" id="readme-name" value="Dundigalla Rithwik Mohan">
+          </div>
+          <div class="form-group">
+            <label for="readme-role">Role Description</label>
+            <input type="text" id="readme-role" value="AI/ML & Full-Stack Developer">
+          </div>
+          <div class="form-group">
+            <label for="readme-banner">Banner Style</label>
+            <select id="readme-banner">
+              <option value="waving">Waving Ocean Gradient (Dark)</option>
+              <option value="neon">Electric Neon Line (Cyan/Purple)</option>
+              <option value="classic">Minimal Tech Slate</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="readme-about-box">About Layout</label>
+            <select id="readme-about-box">
+              <option value="javascript">JavaScript Object Style</option>
+              <option value="python">Python Dict Style</option>
+              <option value="bullet">Clean Markdown Bullet Points</option>
+            </select>
+          </div>
+          <button class="btn btn-primary" id="btn-generate-readme">Generate Code</button>
+        </div>
+        <div class="readme-preview card-glass">
+          <div class="preview-header">
+            <h3>Markdown Output</h3>
+            <button class="btn btn-outline btn-sm" id="btn-copy-readme">Copy Code</button>
+          </div>
+          <pre class="readme-code-block"><code id="readme-code">Loading generated code...</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section scroll-reveal">
+      <div class="section-header">
+        <span class="section-subtitle">Get in Touch</span>
+        <h2 class="section-title">Contact Me</h2>
+        <div class="section-divider"></div>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-cards">
+          <a href="mailto:rizwik475@gmail.com" class="contact-card card-glass">
+            <div class="card-icon">✉️</div>
+            <div class="card-details">
+              <h4>Email Me</h4>
+              <p>rizwik475@gmail.com</p>
+            </div>
+          </a>
+          <a href="https://www.linkedin.com/in/rithwik-mohan/" target="_blank" class="contact-card card-glass">
+            <div class="card-icon">🔗</div>
+            <div class="card-details">
+              <h4>Connect on LinkedIn</h4>
+              <p>rithwik-mohan</p>
+            </div>
+          </a>
+          <a href="https://github.com/RithwikMohan" target="_blank" class="contact-card card-glass">
+            <div class="card-icon">🐙</div>
+            <div class="card-details">
+              <h4>Follow on GitHub</h4>
+              <p>RithwikMohan</p>
+            </div>
+          </a>
+        </div>
+        <form class="contact-form card-glass" id="contact-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="contact-name">Your Name</label>
+              <input type="text" id="contact-name" placeholder="John Doe" required>
+            </div>
+            <div class="form-group">
+              <label for="contact-email">Your Email</label>
+              <input type="email" id="contact-email" placeholder="john@example.com" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="contact-msg">Message</label>
+            <textarea id="contact-msg" rows="5" placeholder="Hi Rithwik, I would love to connect..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" id="btn-submit-contact">Send Message</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer-container">
+    <p>&copy; 2026 Dundigalla Rithwik Mohan. All Rights Reserved.</p>
+    <div class="footer-socials">
+      <a href="https://github.com/RithwikMohan" target="_blank">GitHub</a>
+      <a href="https://www.linkedin.com/in/rithwik-mohan/" target="_blank">LinkedIn</a>
+      <a href="https://leetcode.com/u/rithwik_475/" target="_blank">LeetCode</a>
+    </div>
+  </footer>
+
+  <!-- Modal Template for Project Details -->
+  <div class="modal-overlay" id="project-modal">
+    <div class="modal-content card-glass">
+      <button class="modal-close" id="modal-close" aria-label="Close project modal">&times;</button>
+      <div id="modal-body-content">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Image Lightbox -->
+  <div class="img-lightbox" id="img-lightbox">
+    <button class="lightbox-close" id="lightbox-close" aria-label="Close image">&times;</button>
+    <div class="lightbox-inner">
+      <img id="lightbox-img" src="" alt="Workflow screenshot" class="lightbox-image" />
+      <p id="lightbox-caption" class="lightbox-caption"></p>
+    </div>
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
