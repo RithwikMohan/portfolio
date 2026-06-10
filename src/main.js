@@ -1314,7 +1314,7 @@ ${aboutBlock}
 ---
 
 <div align="center">
-  <strong>🚀 Explore my live projects and full interactive CV at: <a href="https://portfolio-rithwik.vercel.app">My Portfolio</a></strong>
+  <strong>🚀 Explore my live projects and full interactive CV at: <a href="https://portfolio-bay-five-3x6xe8ww5t.vercel.app/">My Portfolio</a></strong>
 </div>
 `;
   }
