@@ -1266,6 +1266,27 @@ JavaScript | React.js | Node.js | Express.js | Flutter | HTML5 | CSS3
 \`\`\`
 MongoDB | MySQL | Cloudinary | Microsoft Azure | Oracle Cloud
 \`\`\`
+
+---
+
+## 📊 GitHub Analytics
+
+<div align="center">
+  <img src="https://github-readme-stats.vercel.app/api?username=RithwikMohan&show_icons=true&theme=tokyonight&hide_border=true" height="165" alt="GitHub Stats" />
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=RithwikMohan&layout=compact&theme=tokyonight&hide_border=true" height="165" alt="Top Languages" />
+</div>
+
+<br/>
+
+<div align="center">
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=RithwikMohan&theme=tokyonight&hide_border=true" alt="GitHub Streak" />
+</div>
+
+---
+
+<div align="center">
+  <strong>🚀 Explore my live projects and full interactive CV at: <a href="https://portfolio-rithwik.vercel.app">My Portfolio</a></strong>
+</div>
 `;
   }
 
