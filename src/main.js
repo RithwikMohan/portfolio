@@ -1194,7 +1194,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const bannerStyle = document.getElementById("readme-banner").value;
     const aboutStyle = document.getElementById("readme-about-box").value;
 
-    let bannerUrl = "https://capsule-render.vercel.app/api?type=waving&color=0:0b0f19,50:1b263b,100:415a77&height=220&section=header";
+    let bannerUrl = "https://capsule-render.vercel.app/api?type=waving&color=0:0f0c29,50:302b63,100:24243e&height=220&section=header";
     if (bannerStyle === "neon") {
       bannerUrl = "https://capsule-render.vercel.app/api?type=waving&color=0:090b11,100:00f2fe&height=180&section=header";
     } else if (bannerStyle === "classic") {
@@ -1232,13 +1232,18 @@ rithwik = {
 
     return `<div align="center">
 
-<img width="100%" src="${bannerUrl}&text=${encodeURIComponent(name)}&fontSize=42&fontColor=ffffff&desc=${encodeURIComponent(role)}&descAlignY=62&descColor=a3b18a" alt="Header Banner" />
+<img width="100%" src="${bannerUrl}&text=${encodeURIComponent(name)}&fontSize=46&fontColor=ffffff&animation=fadeIn&fontAlignY=38&desc=${encodeURIComponent(role)}&descAlignY=58&descSize=18&descColor=aaaaff" alt="Header Banner" />
 
-<br/>
+<a href="https://git.io/typing-svg">
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=20&duration=2800&pause=900&color=7B8EFF&center=true&vCenter=true&multiline=false&repeat=true&width=700&height=50&lines=Generative+AI+%7C+FastAPI+%7C+MCP+Servers;MERN+Stack+%7C+Flutter+%7C+REST+APIs;CBIT+IT+%7C+CGPA+9.18+%7C+Azure+Certified;350%2B+LeetCode+%7C+Hackathon+Winner;AI+Automations+%7C+Open+to+Internships" alt="Typing SVG" />
+</a>
 
+<br/><br/>
+
+![Profile Views](https://komarev.com/ghpvc/?username=RithwikMohan&color=7B8EFF&style=flat-square&label=Profile+Views)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/rithwik-mohan/)
-[![LeetCode](https://img.shields.io/badge/LeetCode-FFA116?style=flat-square&logo=leetcode&logoColor=white)](https://leetcode.com/u/rithwik_475/)
-[![Email](https://img.shields.io/badge/Email-rizwik475%40gmail.com-D14836?style=flat-square&logo=gmail&logoColor=white)](mailto:rizwik475@gmail.com)
+[![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/RithwikMohan)
+[![Email](https://img.shields.io/badge/Email-EA4335?style=flat-square&logo=gmail&logoColor=white)](mailto:rizwik475@gmail.com)
 
 </div>
 
@@ -1250,22 +1255,33 @@ ${aboutBlock}
 
 ---
 
-## 🛠️ Technology Toolbox
+## 🛠️ Tech Stack
 
-### **AI / ML & Orchestration**
-\`\`\`
-Python | TensorFlow | PyTorch | Gemini API | n8n workflows | MCP Servers
-\`\`\`
+**AI / ML & Orchestration**
 
-### **Full-Stack Development**
-\`\`\`
-JavaScript | React.js | Node.js | Express.js | Flutter | HTML5 | CSS3
-\`\`\`
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![TensorFlow](https://img.shields.io/badge/TensorFlow-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white)
+![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)
+![Google Gemini](https://img.shields.io/badge/Google_Gemini-8E75B2?style=for-the-badge&logo=google&logoColor=white)
+![n8n](https://img.shields.io/badge/n8n-FF6D5A?style=for-the-badge&logo=n8n&logoColor=white)
 
-### **Databases & Cloud**
-\`\`\`
-MongoDB | MySQL | Cloudinary | Microsoft Azure | Oracle Cloud
-\`\`\`
+**Full Stack**
+
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white)
+![Express](https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white)
+![Flutter](https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white)
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+
+**Databases & Cloud**
+
+![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
+![Microsoft Azure](https://img.shields.io/badge/Microsoft_Azure-0089D6?style=for-the-badge&logo=microsoftazure&logoColor=white)
+![Oracle](https://img.shields.io/badge/Oracle-F80000?style=for-the-badge&logo=oracle&logoColor=white)
+![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
 
 ---
 
