@@ -1,4 +1,5 @@
 import civicVideo from './assets/civic_execution.mp4';
+import DYNAMIC_PROJECTS from './dynamic_projects.json';
 import campusVideo from './assets/campus_execution.mp4';
 import iotVideo from './assets/iot_execution.mp4';
 import newsNodes from './assets/news_nodes.png';
@@ -28,6 +29,13 @@ import uidaiRiskDist from './assets/uidai_risk_distribution.png';
 // Realtime Lecture Analytics (Kafka + Spark) screenshots
 import kafkaStudentView from './assets/kafka_student_view.png';
 import kafkaTeacherDashboard from './assets/kafka_teacher_dashboard.png';
+
+// Referral Dashboard screenshots
+import refCover from './assets/cover.png';
+import refScreen1 from './assets/Screenshot 2026-06-22 230823.png';
+import refScreen2 from './assets/Screenshot 2026-06-22 230844.png';
+import refScreen3 from './assets/Screenshot 2026-06-22 230856.png';
+import refScreen4 from './assets/Screenshot 2026-06-22 230907.png';
 
 /* ==========================================================================
    Main JavaScript Controller
@@ -59,7 +67,8 @@ const SKILLS_DATA = [
   { name: "Data Science (Pandas/NumPy)", percentage: 85, category: "tools", meta: "Data preprocessing, manipulation, statistical analysis, Matplotlib" }
 ];
 
-const PROJECTS_DATA = [
+let PROJECTS_DATA = [
+
   {
     id: "civicvision",
     title: "CivicVision - AI Civic Issue Detection & Management System",
@@ -757,8 +766,64 @@ const PROJECTS_DATA = [
       github: "https://github.com/RithwikMohan/UIDAI-Hackathon",
       demo: "https://colab.research.google.com/drive/1hMyHYzDTDAx-jVoPNyrHONGaEUj1oQ_5?usp=sharing"
     }
+  },
+  {
+    id: "referraldashboard",
+    title: "Referral Dashboard",
+    shortDesc: "A modern, responsive web application serving as a centralized platform for tracking referral performance, monitoring earnings, and managing partner activity.",
+    longDesc: "The Referral Dashboard is built with React and Vite. It serves as a centralized platform for users to easily track their referral performance, monitor earnings, and manage partner activity. Designed with user experience in mind, the dashboard provides a clear, high-level summary alongside detailed, interactive data tables with real-time search filtering, chronological sorting, and secure JWT-based authentication.",
+    techStack: ["React 19", "Vite", "React Router v7", "CSS", "AWS API Gateway"],
+    bannerEmoji: "📈",
+    category: "fullstack",
+    projectGalleries: [
+      { label: "Dashboard Overview", images: [refCover, refScreen1] },
+      { label: "Detailed Views", images: [refScreen2, refScreen3, refScreen4] }
+    ],
+    usp: "Focuses on lightning-fast builds with Vite and responsive Vanilla CSS styling while utilizing js-cookie for secure JWT authentication management and AWS API Gateway for robust data handling.",
+    featureGroups: [
+      {
+        groupTitle: "🔒 Secure Authentication",
+        groupColor: "#6C63FF",
+        features: [
+          { label: "JWT Auth", detail: "Secure login system with protected routes" },
+          { label: "Token Management", detail: "js-cookie for secure storage of authentication tokens" }
+        ]
+      },
+      {
+        groupTitle: "📊 Interactive Dashboard",
+        groupColor: "#00C9FF",
+        features: [
+          { label: "High-level Metrics", detail: "Total earnings, active referrals, and service summaries" },
+          { label: "Referral Table", detail: "Paginated table with search filtering and chronological sorting" }
+        ]
+      },
+      {
+        groupTitle: "🔍 Detailed Views & Sharing",
+        groupColor: "#43E97B",
+        features: [
+          { label: "Drill-down Info", detail: "Click table rows to view in-depth referral details" },
+          { label: "Easy Sharing", detail: "Built-in controls to copy referral links and codes" }
+        ]
+      }
+    ],
+    highlights: [
+      "<strong>⚡ Lightning Fast Frontend</strong>: Built using React 19 powered by Vite for hot module replacement.",
+      "<strong>🔒 Secure Auth</strong>: JWT-based login using js-cookie.",
+      "<strong>📊 Advanced Tables</strong>: Paginated and interactive data tables with real-time search filtering.",
+      "<strong>🌐 API Integration</strong>: RESTful API integration via AWS API Gateway."
+    ],
+    links: {
+      github: "https://github.com/RithwikMohan/referral_dashboard",
+      demo: "#"
+    }
   }
 ];
+
+// Append dynamically synced projects from sync_github_projects.js (run `npm run sync-projects`)
+// DYNAMIC_PROJECTS are sorted by creation date ascending, so newest repos appear last.
+if (Array.isArray(DYNAMIC_PROJECTS) && DYNAMIC_PROJECTS.length > 0) {
+  PROJECTS_DATA = [...PROJECTS_DATA, ...DYNAMIC_PROJECTS];
+}
 
 const CHAT_PROMPTS = [
   { text: "What is Rithwik's tech stack?", key: "stack" },
@@ -900,7 +965,10 @@ document.addEventListener("DOMContentLoaded", () => {
       card.innerHTML = `
         <div class="project-card-inner">
           <div class="project-banner">
-            <span class="project-banner-decor">${proj.bannerEmoji}</span>
+            ${proj.previewImg ? 
+              `<img src="${proj.previewImg}" alt="${proj.title} preview" class="project-banner-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';" />
+               <span class="project-banner-decor" style="display:none;">${proj.bannerEmoji}</span>` 
+              : `<span class="project-banner-decor">${proj.bannerEmoji}</span>`}
           </div>
           <h3 class="project-title">${proj.title}</h3>
           <p class="project-desc">${proj.shortDesc}</p>
@@ -933,6 +1001,160 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Initial projects render
   renderProjects("all");
+
+  // ─── Auto-sync from GitHub ────────────────────────────────────────────────
+  // Fetches any GitHub repo with a `preview/` folder that is not already in
+  // the static list above. Results are cached in localStorage for 1 hour so
+  // the page stays fast and never hits GitHub's rate limit.
+  // NO REDEPLOYMENT NEEDED — just add a `preview/` folder + README to any repo.
+  // ─────────────────────────────────────────────────────────────────────────
+
+  const CACHE_KEY  = 'portfolio_dynamic_projects_v1';
+  const CACHE_TTL  = 60 * 60 * 1000; // 1 hour in ms
+  const GH_USER    = 'RithwikMohan';
+
+  /** Returns the set of GitHub repo URLs already present in the static list */
+  function getStaticGithubLinks() {
+    return new Set(
+      PROJECTS_DATA
+        .map(p => p.links && p.links.github)
+        .filter(Boolean)
+        .map(u => u.toLowerCase().replace(/\.git$/, '').replace(/\/$/, ''))
+    );
+  }
+
+  function parseReadme(text) {
+    let shortDesc = '';
+    let techStack = [];
+    let features  = [];
+    if (!text) return { shortDesc, techStack, features };
+
+    const lines = text.split('\n');
+    let section  = '';
+
+    for (const line of lines) {
+      const low = line.toLowerCase();
+      if (line.startsWith('#')) {
+        section = '';
+        if (low.includes('overview') || low.includes('description') || low.includes('about')) section = 'desc';
+        else if (low.includes('tech') || low.includes('stack') || low.includes('technolog')) section = 'tech';
+        else if (low.includes('feature')) section = 'feat';
+        continue;
+      }
+      const clean = line.replace(/[*_~`#]/g, '').trim();
+      if (!clean) continue;
+
+      if (section === 'desc' && !shortDesc && clean.length > 20) {
+        shortDesc = clean;
+      } else if (section === 'tech' && line.trim().startsWith('-') && clean.length < 30) {
+        if (techStack.length < 7) techStack.push(clean.replace(/^-\s*/, ''));
+      } else if (section === 'feat' && line.trim().startsWith('-')) {
+        if (features.length < 5) features.push({ label: 'Feature', detail: clean.replace(/^-\s*/, '') });
+      }
+    }
+    return { shortDesc, techStack, features };
+  }
+
+  async function fetchDynamicProjects() {
+    // ── 1. Check cache ──────────────────────────────────────────────────────
+    try {
+      const cached = JSON.parse(localStorage.getItem(CACHE_KEY) || 'null');
+      if (cached && Date.now() - cached.ts < CACHE_TTL) {
+        if (cached.projects.length) appendDynamicProjects(cached.projects);
+        return;
+      }
+    } catch (_) { /* ignore corrupt cache */ }
+
+    // ── 2. Fetch repo list ──────────────────────────────────────────────────
+    let repos;
+    try {
+      const res = await fetch(
+        `https://api.github.com/users/${GH_USER}/repos?sort=created&direction=asc&per_page=100`,
+        { headers: { 'Accept': 'application/vnd.github.v3+json' } }
+      );
+      if (!res.ok) return; // silently skip if rate-limited
+      repos = await res.json();
+    } catch (_) { return; }
+
+    const staticLinks  = getStaticGithubLinks();
+    const dynamicProjects = [];
+
+    // ── 3. For each unfamiliar repo, check for preview/ folder ─────────────
+    for (const repo of repos) {
+      if (repo.fork) continue;
+      const repoUrl = repo.html_url.toLowerCase().replace(/\.git$/, '').replace(/\/$/, '');
+      if (staticLinks.has(repoUrl)) continue;
+      // Skip the portfolio repo itself and the profile README repo
+      if (repo.name.toLowerCase() === 'rithwikmohan' || repo.name.toLowerCase().includes('portfolio')) continue;
+
+      try {
+        const res = await fetch(
+          `https://api.github.com/repos/${GH_USER}/${repo.name}/contents/preview`,
+          { headers: { 'Accept': 'application/vnd.github.v3+json' } }
+        );
+        if (!res.ok) continue; // 404 = no preview folder, skip silently
+
+        const files  = await res.json();
+        const images = Array.isArray(files)
+          ? files.filter(f => /\.(png|jpe?g|gif)$/i.test(f.name)).map(f => f.download_url)
+          : [];
+        if (!images.length) continue;
+
+        // Fetch README for description + tech stack
+        let readmeText = null;
+        for (const branch of ['main', 'master']) {
+          const r = await fetch(`https://raw.githubusercontent.com/${GH_USER}/${repo.name}/${branch}/README.md`);
+          if (r.ok) { readmeText = await r.text(); break; }
+        }
+
+        const { shortDesc, techStack, features } = parseReadme(readmeText);
+        const featureGroups = features.length ? [{
+          groupTitle : '✨ Key Features',
+          groupColor : '#6C63FF',
+          features   : features
+        }] : [];
+
+        dynamicProjects.push({
+          id             : repo.name.toLowerCase().replace(/[^a-z0-9]/g, ''),
+          title          : repo.name.replace(/[-_]/g, ' '),
+          shortDesc      : shortDesc || repo.description || 'A project from GitHub.',
+          longDesc       : shortDesc || repo.description || 'A project from GitHub.',
+          techStack      : techStack.length ? techStack : (repo.language ? [repo.language] : ['Code']),
+          bannerEmoji    : '💻',
+          category       : 'fullstack',
+          projectGalleries: [{ label: 'Screenshots', images }],
+          usp            : repo.description || 'A project synced automatically from GitHub.',
+          featureGroups,
+          highlights     : features.slice(0, 4).map(f => `<strong>⚡</strong> ${f.detail}`),
+          links          : { github: repo.html_url, demo: repo.homepage || '#' }
+        });
+
+      } catch (_) { /* skip any repo that errors */ }
+    }
+
+    // ── 4. Save to cache ────────────────────────────────────────────────────
+    try {
+      localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), projects: dynamicProjects }));
+    } catch (_) { /* ignore if storage full */ }
+
+    if (dynamicProjects.length) appendDynamicProjects(dynamicProjects);
+  }
+
+  function appendDynamicProjects(newProjects) {
+    // Avoid duplicates on re-render
+    const existingIds = new Set(PROJECTS_DATA.map(p => p.id));
+    const toAdd = newProjects.filter(p => !existingIds.has(p.id));
+    if (!toAdd.length) return;
+
+    PROJECTS_DATA.push(...toAdd);
+
+    // Re-render the currently active tab
+    const activeTab = document.querySelector('.projects-tab.active');
+    if (activeTab) renderProjects(activeTab.getAttribute('data-category'));
+  }
+
+  // Kick off in the background — doesn't block initial render
+  fetchDynamicProjects();
 
   function openProjectModal(id) {
     const proj = PROJECTS_DATA.find(p => p.id === id);
@@ -1047,7 +1269,9 @@ document.addEventListener("DOMContentLoaded", () => {
             ${proj.highlights.map(h => `<li>${h}</li>`).join("")}
           </ul>
         </div>
-        <div class="modal-project-highlights" style="margin-bottom: 2rem;">
+        <div id="github-dynamic-media"></div>
+        <div id="github-readme-container"></div>
+        <div class="modal-project-highlights" style="margin-bottom: 2rem; margin-top: 2rem;">
           <h4>Technologies Leveraged</h4>
           <div class="project-tags">
             ${proj.techStack.map(tag => `<span class="project-tag" style="font-size: 0.85rem; padding: 0.3rem 0.8rem;">${tag}</span>`).join("")}
@@ -1075,6 +1299,88 @@ document.addEventListener("DOMContentLoaded", () => {
           modal.querySelector(`.mcp-gallery-panel[data-panel="${btn.dataset.idx}"]`).classList.add("active");
         });
       });
+    }
+
+    if (proj.githubRepoName) {
+      const mediaContainer = document.getElementById('github-dynamic-media');
+      if (mediaContainer) {
+        mediaContainer.innerHTML = '<p style="text-align:center; color: var(--text-muted); margin: 2rem 0;"><em>Scanning repository for preview media...</em></p>';
+        
+        fetch(`https://api.github.com/repos/RithwikMohan/${proj.githubRepoName}/contents/preview`)
+          .then(res => {
+            if (!res.ok) throw new Error("No preview folder");
+            return res.json();
+          })
+          .then(files => {
+            let mediaHTML = "";
+            let images = [];
+            let videos = [];
+            
+            files.forEach(file => {
+              if (file.name.toLowerCase() === 'cover.png') return; // Skip cover
+              const url = file.download_url;
+              if (!url) return;
+              
+              if (url.match(/\\.(mp4|webm|ogg)$/i)) {
+                videos.push(url);
+              } else if (url.match(/\\.(png|jpe?g|gif|svg|webp)$/i)) {
+                images.push(url);
+              }
+            });
+            
+            if (videos.length > 0) {
+              mediaHTML += `<div class="modal-project-highlights" style="margin-top: 2rem; margin-bottom: 1.5rem;"><h4>🎥 Video Demos</h4></div>`;
+              videos.forEach(v => {
+                mediaHTML += `<div class="modal-project-video" style="margin: 0 auto 1.5rem; max-width: 500px; border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color); background: #000; box-shadow: 0 8px 24px rgba(0,0,0,0.5);">
+                  <video src="${v}" controls style="width: 100%; display: block;"></video>
+                </div>`;
+              });
+            }
+            
+            if (images.length > 0) {
+              mediaHTML += `<div class="modal-project-highlights" style="margin-top: 2.5rem; margin-bottom: 1.5rem;"><h4>📸 Project Gallery</h4></div>`;
+              mediaHTML += `<div class="news-workflow-gallery" style="grid-template-columns: repeat(${images.length === 1 ? '1' : '2'}, 1fr); gap: 1.5rem;">`;
+              images.forEach((img, idx) => {
+                mediaHTML += `<div class="news-workflow-img-wrap" onclick="openLightbox('${img}', '${proj.title} — Screenshot ${idx+1}')">
+                  <img src="${img}" alt="Gallery image ${idx+1}" class="news-workflow-img" style="border-radius: 8px;" />
+                  <span class="news-zoom-hint">🔍 Click to expand</span>
+                </div>`;
+              });
+              mediaHTML += `</div>`;
+            }
+            
+            mediaContainer.innerHTML = mediaHTML;
+          })
+          .catch(err => {
+            mediaContainer.innerHTML = ""; // Silent fail
+          });
+          
+        const readmeContainer = document.getElementById('github-readme-container');
+        if (readmeContainer) {
+          readmeContainer.innerHTML = '<p style="text-align:center; color: var(--text-muted); margin: 2rem 0;"><em>Fetching full README...</em></p>';
+          
+          fetch(`https://api.github.com/repos/RithwikMohan/${proj.githubRepoName}/readme`, {
+            headers: { 'Accept': 'application/vnd.github.html' }
+          })
+            .then(res => {
+              if (!res.ok) throw new Error("No README found");
+              return res.text();
+            })
+            .then(html => {
+              readmeContainer.innerHTML = `
+                <div class="modal-project-highlights" style="margin-top: 2.5rem; margin-bottom: 1.5rem;">
+                  <h4>📖 Full Documentation</h4>
+                </div>
+                <div class="github-readme-content markdown-body" style="background: rgba(0,0,0,0.2); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--border-color); overflow-x: auto; font-size: 0.95rem; line-height: 1.6;">
+                  ${html}
+                </div>
+              `;
+            })
+            .catch(err => {
+              readmeContainer.innerHTML = ""; // Silent fail
+            });
+        }
+      }
     }
   }
 
